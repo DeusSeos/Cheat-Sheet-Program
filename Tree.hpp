@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -78,7 +79,7 @@ public:
     * @postcondition - the data is removed from the Tree
     * 
     */
-    Node& find(T element);
+    Tree<T>::Node* find(T element);
 
     /*
     * Returns the number of nodes in the Tree
@@ -94,6 +95,15 @@ public:
     * @postcondition - the Tree is unchanged
     */
     unsigned int height(Node *node) const;
+
+    /*
+    * Returns the height of the node (the number of edges from the root to the deepest leaf) from the root
+    * @return - the height of from the specified node
+    * @complexity - O(n)
+    * @precondition - the Tree must be non-empty
+    * @postcondition - the Tree is unchanged
+    */
+    unsigned int height() const;
 
 
     /*
@@ -129,11 +139,70 @@ public:
     void postOrder(Node* node, vector<Node>& list);
 
 
+    /* appends a list of the nodes in the Tree in level-order traversal to the vector
+    * @param node - the node to traverse from, list - the vector to append the nodes to
+    * @return - a list of the nodes in the Tree
+    * @complexity - O(n)
+    * @precondition - the Tree must be non-empty
+    * @postcondition - the Tree is unchanged
+    */
+    void levelOrder(Node* node, vector<Node>& list);
+
+
+    /*
+    * appends a list of the nodes in the Tree in in-order traversal to the vector
+    * @param node list - the vector to append the nodes to
+    * @return - a list of the nodes in the Tree
+    * @complexity - O(n)
+    * @precondition - the Tree must be non-empty
+    */
+    void inOrder(vector<Node>& list);
+
+
+    /*
+    * appends a list of the nodes in the Tree in pre-order traversal to the vector from the root
+    * @param list - the vector to append the nodes to
+    * @return - a list of the nodes in the Tree
+    * @complexity - O(n)
+    * @precondition - the Tree must be non-empty
+    * @postcondition - the Tree is unchanged
+    */
+    void preOrder(vector<Node>& list);
+
+
+    /*
+    * appends a list of the nodes in the Tree in post-order traversal to the vector from the root
+    * @param node - the vector to append the nodes to
+    * @return - a list of the nodes in the Tree
+    * @complexity - O(n)
+    * @precondition - the Tree must be non-empty
+    * @postcondition - the Tree is unchanged
+    */
+    void postOrder(vector<Node>& list);
+
+
+    /* appends a list of the nodes in the Tree in level-order traversal to the vector from the root
+    * @param node - the vector to append the nodes to
+    * @return - a list of the nodes in the Tree
+    * @complexity - O(n)
+    * @precondition - the Tree must be non-empty
+    * @postcondition - the Tree is unchanged
+    */
+    void levelOrder(vector<Node>& list);
+
+
+
 
 private:
     Node *root;
     unsigned int numElements;
 
 };
-#endif TREE_H
 
+/*
+* menu for the tree class
+*/
+void treeMenu();
+
+
+#endif
