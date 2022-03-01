@@ -17,16 +17,6 @@ public:
      */
     ~BST();
 
-    /*
-    * clears the BST
-    */
-    void clear();
-
-    /*
-    * Recurvisve function for clear
-    */
-    void clear(Node *node);
-
 
     /*
     * Inserts a node into the BST
@@ -34,45 +24,43 @@ public:
     * @return - true if the data was inserted, false otherwise
     * @complexity - O(log n)
     */
-    bool insert(T element);
+    bool insert(T element) override;
 
 
     /*
     * Removes a node from the BST
-    * @param data - the data to be removed from the BST (removes the first occurence)
+    * @param data - the data to be removed from the BST
     * @return - true if the data was removed, false otherwise
     * @precondition - the data must be in the BST
     * @postcondition - the data is removed from the BST
     * @complexity - O(log n)
     */
-    bool remove(T element);
+    bool remove(T element) override;
 
 
     /*
-    * Find for a node in the BST
-    * @param data - the data to be searched for in the BST
-    * @return - true if the data is in the BST, false otherwise
+    * Returns the successor of an element in the BST
+    * @param data - the element to find the successor of
+    * @return - the successor of the element
+    * @precondition - the element must be in the BST
     * @complexity - O(log n)
-    * @precondition - the data must be in the BST
-    * @postcondition - the data is removed from the BST
-    * 
+    * @postcondition - the successor of the element is returned
     */
-    Node& find(T element);
+    T successor(T element);
+
 
     /*
-    * Returns the number of nodes in the BST
-    * @return - the number of nodes in the BST
+    * Returns a successor node of a node in the BST
+    * @param data - the node to find the successor of
+    * @return - the successor node of the element
+    * @precondition - the element must be in the BST
+    * @complexity - O(log n)
+    * @postcondition - the successor node of the element is returned
+    * @note - this function is only used in the remove function
     */
-    unsigned int size() const;
+    typename Tree<T>::Node* successor(typename Tree<T>::Node *node);
 
-    /*
-    * Returns the height of the node (the number of edges from the root to the deepest leaf) 
-    * @return - the height of from the specified node
-    * @complexity - O(n)
-    * @precondition - the BST must be non-empty
-    * @postcondition - the BST is unchanged
-    */
-    unsigned int height(Node *node) const;
+
 
     /*
     * Returns the maximum value in the BST
@@ -92,37 +80,7 @@ public:
     */
     T min() const;
 
-    /*
-    * Returns a list of the nodes in the BST in pre-order traversal
-    * @return - a list of the nodes in the BST
-    * @complexity - O(n)
-    * @precondition - the BST must be non-empty
-    * @postcondition - the BST is unchanged
-    */
-    std::vector<T> preOrder();
 
-    /*
-    * Returns a list of the nodes in the BST in in-order traversal
-    * @return - a list of the nodes in the BST
-    * @complexity - O(n)
-    * @precondition - the BST must be non-empty
-    */
-    std::vector<T> inOrder();
-
-    /*
-    * Returns a list of the nodes in the BST in post-order traversal
-    * @return - a list of the nodes in the BST
-    * @complexity - O(n)
-    * @precondition - the BST must be non-empty
-    * @postcondition - the BST is unchanged
-    */
-    std::vector<T> postOrder();
-
-
-
-private:
-    Node *root;
-    unsigned int size;
 };
 
 #endif

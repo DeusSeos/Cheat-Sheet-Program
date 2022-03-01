@@ -56,7 +56,7 @@ public:
     * @return - true if the data was inserted, false otherwise
     * @complexity - O(log n)
     */
-    bool insert(T element);
+    virtual bool insert(T element);
 
 
     /*
@@ -67,16 +67,16 @@ public:
     * @postcondition - the data is removed from the Tree
     * @complexity - O(log n)
     */
-    bool remove(T element);
+    virtual bool remove(T element);
 
 
     /*
     * Find for a node in the Tree
     * @param data - the data to be searched for in the Tree
-    * @return - true if the data is in the Tree, false otherwise
+    * @return - nullptr if the data is not in the Tree, the node if it is
     * @complexity - O(log n)
     * @precondition - the data must be in the Tree
-    * @postcondition - the data is removed from the Tree
+    * @postcondition - the data is unchanged
     * 
     */
     Tree<T>::Node* find(T element);
@@ -104,6 +104,12 @@ public:
     * @postcondition - the Tree is unchanged
     */
     unsigned int height() const;
+
+
+    //TODO - add depth function
+
+
+
 
 
     /*
