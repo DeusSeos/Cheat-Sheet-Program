@@ -29,8 +29,7 @@ public:
     */
     unordered_map<T, int> balance_factors();
 
-    /*
-    * 
+
 
     
 
@@ -38,4 +37,4 @@ private:
 
 
 
-#endif AVL_H;
+#endif

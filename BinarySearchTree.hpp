@@ -1,23 +1,25 @@
 #ifndef BST_H
 #define BST_H
 
-
 #include <iostream>
 #include <vector>
 #include <queue>
 
 using namespace std;
 
-
-template <class T> class BST {
+template <class T>
+class BST
+{
 public:
-  class Node {
+  class Node
+  {
   public:
     T data;
     Node *left;
     Node *right;
     Node *parent;
-    Node(T data) {
+    Node(T data)
+    {
       this->data = data;
       left = nullptr;
       right = nullptr;
