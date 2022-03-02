@@ -2,7 +2,6 @@
 #define NODE_H
 
 template<class T>
-
 class Node {
     public:
         T data;

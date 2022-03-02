@@ -1,5 +1,6 @@
 #include "Tree.hpp"
 
+
 // Constructor
 template <class T>
 Tree<T>::Tree()
@@ -18,7 +19,7 @@ void Tree<T>::clear() { clear(root); }
 
 // Recursive function for clear
 template <class T>
-void Tree<T>::clear(Node *node)
+void Tree<T>::clear(Node<T> *node)
 {
   if (node == nullptr)
   {
@@ -34,7 +35,7 @@ void Tree<T>::clear(Node *node)
 template <class T>
 bool Tree<T>::insert(T element)
 {
-  Node *node = new Node(element);
+  Node<T> *node = new Node(element);
   if (root == nullptr)
   {
     root = node;
@@ -42,7 +43,7 @@ bool Tree<T>::insert(T element)
     // cout << "Inserted " << element << " into the tree" << endl;
     return true;
   }
-  Node *current = root;
+  Node<T> *current = root;
   while (true)
   {
     if (current->data == element)
@@ -78,7 +79,7 @@ bool Tree<T>::insert(T element)
 template <class T>
 bool Tree<T>::remove(T element)
 {
-  Node *node = find(element);
+  Node<T> *node = find(element);
   if (node == nullptr)
   {
     return false;
@@ -99,7 +100,7 @@ bool Tree<T>::remove(T element)
   }
   else if (node->left == nullptr || node->right == nullptr)
   {
-    Node *child = node->left == nullptr ? node->right : node->left;
+    Node<T> *child = node->left == nullptr ? node->right : node->left;
     if (node->parent->left == node)
     {
       node->parent->left = child;
@@ -115,7 +116,7 @@ bool Tree<T>::remove(T element)
   }
   else
   {
-    Node *successor = node->right;
+    Node<T> *successor = node->right;
     while (successor->left != nullptr)
     {
       successor = successor->left;
@@ -130,9 +131,9 @@ bool Tree<T>::remove(T element)
 
 // finds the element in the Tree
 template <class T>
-typename Tree<T>::Node *Tree<T>::find(T element)
+Node<T> *Tree<T>::find(T element)
 {
-  Node *current = root;
+  Node<T> *current = root;
   while (current != nullptr)
   {
     if (current->data == element)
@@ -161,7 +162,7 @@ unsigned int Tree<T>::size() const
 // returns the height from the specified node (the number of edges from the root
 // to the deepest leaf)
 template <class T>
-unsigned int Tree<T>::height(Node *node) const
+unsigned int Tree<T>::height(Node<T> *node) const
 {
   if (node == nullptr)
   {
@@ -188,7 +189,7 @@ unsigned int Tree<T>::height() const
 
 // appends to the vector the nodes in the Tree in inorder
 template <class T>
-void Tree<T>::inOrder(Node *node, vector<Node> &list)
+void Tree<T>::inOrder(Node<T> *node, vector<Node<T>> &list)
 {
   if (node == nullptr)
   {
@@ -202,7 +203,7 @@ void Tree<T>::inOrder(Node *node, vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in preorder
 template <class T>
-void Tree<T>::preOrder(Node *node, vector<Node> &list)
+void Tree<T>::preOrder(Node<T> *node, vector<Node<T>> &list)
 {
   if (node == nullptr)
   {
@@ -217,7 +218,7 @@ void Tree<T>::preOrder(Node *node, vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in postorder
 template <class T>
-void Tree<T>::postOrder(Node *node, vector<Node> &list)
+void Tree<T>::postOrder(Node<T> *node, vector<Node<T>> &list)
 {
   if (node == nullptr)
   {
@@ -231,17 +232,17 @@ void Tree<T>::postOrder(Node *node, vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in levelorder
 template <class T>
-void Tree<T>::levelOrder(Node *node, vector<Node> &list)
+void Tree<T>::levelOrder(Node<T> *node, vector<Node<T>> &list)
 {
   if (node == nullptr)
   {
     return;
   }
-  queue<Node *> q;
+  queue<Node<T> *> q;
   q.push(node);
   while (!q.empty())
   {
-    Node *current = q.front();
+    Node<T> *current = q.front();
     q.pop();
     list.push_back(*current);
     if (current->left != nullptr)
@@ -258,7 +259,7 @@ void Tree<T>::levelOrder(Node *node, vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in inorder from the root
 template <class T>
-void Tree<T>::inOrder(vector<Node> &list)
+void Tree<T>::inOrder(vector<Node<T>> &list)
 {
   if (root == nullptr)
   {
@@ -272,7 +273,7 @@ void Tree<T>::inOrder(vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in preorder from the root
 template <class T>
-void Tree<T>::preOrder(vector<Node> &list)
+void Tree<T>::preOrder(vector<Node<T>> &list)
 {
   if (root == nullptr)
   {
@@ -287,7 +288,7 @@ void Tree<T>::preOrder(vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in postorder from the root
 template <class T>
-void Tree<T>::postOrder(vector<Node> &list)
+void Tree<T>::postOrder(vector<Node<T>> &list)
 {
   if (root == nullptr)
   {
@@ -301,17 +302,17 @@ void Tree<T>::postOrder(vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in levelorder from the root
 template <class T>
-void Tree<T>::levelOrder(vector<Node> &list)
+void Tree<T>::levelOrder(vector<Node<T>> &list)
 {
   if (root == nullptr)
   {
     return;
   }
-  queue<Node *> q;
+  queue<Node<T> *> q;
   q.push(root);
   while (!q.empty())
   {
-    Node *current = q.front();
+    Node<T> *current = q.front();
     q.pop();
     list.push_back(*current);
     if (current->left != nullptr)
@@ -433,7 +434,7 @@ void treeMenu()
       break;
     case 8:
     {
-      vector<Tree<int>::Node> list;
+      vector<Node<int>> list;
       tree.inOrder(list);
       cout << "The tree in order is: ";
       for (size_t i = 0; i < list.size(); i++)
@@ -445,7 +446,7 @@ void treeMenu()
     }
     case 9:
     {
-      vector<Tree<int>::Node> list;
+      vector<Node<int>> list;
       tree.preOrder(list);
       cout << "The tree pre order is: ";
       for (size_t i = 0; i < list.size(); i++)
@@ -457,7 +458,7 @@ void treeMenu()
     }
     case 10:
     {
-      vector<Tree<int>::Node> list;
+      vector<Node<int>> list;
       tree.postOrder(list);
       cout << "The tree post order is: ";
       for (size_t i = 0; i < list.size(); i++)
@@ -469,7 +470,7 @@ void treeMenu()
     }
     case 11:
     {
-      vector<Tree<int>::Node> list;
+      vector<Node<int>> list;
       tree.levelOrder(list);
       cout << "The tree level order is: ";
       for (size_t i = 0; i < list.size(); i++)
