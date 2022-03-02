@@ -5,8 +5,8 @@ OUTFILES?=Main
 
 all: $(OUTFILES)
 
-Main: Main.cpp Tree.cpp Tree.hpp
-	$(CXX) $(CXXFLAGS) -o Main.exe Main.cpp Tree.cpp Tree.hpp
+Main: Main.cpp Tree.cpp Tree.hpp BinarySearchTree.cpp BinarySearchTree.hpp
+	$(CXX) $(CXXFLAGS) -o Main.exe Main.cpp Tree.cpp BinarySearchTree.cpp
 
 
 clean:

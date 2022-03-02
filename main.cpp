@@ -2,19 +2,13 @@
 #include <vector>
 #include <string>
 #include "Tree.hpp"
+#include "BinarySearchTree.hpp"
 
 
 using namespace std;
 
 
-void bstMenu(){
-    cout << "1. Insert" << endl;
-    cout << "2. Remove" << endl;
-    cout << "3. Find" << endl;
-    cout << "4. Clear" << endl;
-    cout << "5. Print" << endl;
-    cout << "6. Quit" << endl;
-}
+
 
 void sbstMenu(){
     cout << "1. Insert" << endl;
@@ -56,7 +50,7 @@ void mainMenu(){
             treeMenu();
             break;
         case 2:
-            bstMenu();
+            BSTmenu();
             break;
         case 3:
             sbstMenu();

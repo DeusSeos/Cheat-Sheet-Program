@@ -22,8 +22,8 @@ template <class T> void Tree<T>::clear(Node *node) {
   delete node;
 }
 
-//TODO: CHANGE THIS TO INSERT LEFT AND RIGHT EQUALLY
-// Inserts a node into the Tree
+// TODO: CHANGE THIS TO INSERT LEFT AND RIGHT EQUALLY
+//  Inserts a node into the Tree
 template <class T> bool Tree<T>::insert(T element) {
   Node *node = new Node(element);
   if (root == nullptr) {
@@ -249,9 +249,8 @@ template <class T> void Tree<T>::levelOrder(vector<Node> &list) {
   return;
 }
 
-
 // menu to continue inserting or quit
-void insertMenu(Tree<int> *tree) {
+template <class T> void insertMenu(Tree<T> *tree) {
   int choice;
   while (true) {
     cout << "1. Insert" << endl;
@@ -261,12 +260,12 @@ void insertMenu(Tree<int> *tree) {
     cout << endl;
     switch (choice) {
     case 1:
-      int element;
+      T element;
       cout << "Enter the element to insert: ";
       cin >> element;
       cout << endl;
       tree->insert(element);
-    //   cout << tree;
+      //   cout << tree;
       break;
     case 2:
       return;
@@ -276,7 +275,6 @@ void insertMenu(Tree<int> *tree) {
     }
   }
 }
-
 
 // Tree menu
 // Create a Tree variable from the Tree class
@@ -294,6 +292,7 @@ void insertMenu(Tree<int> *tree) {
 // 10. Print Tree Post Order
 // 11. Print Tree Level Order
 // run the selected function
+
 void treeMenu() {
   Tree<int> tree;
   int choice;
@@ -315,7 +314,7 @@ void treeMenu() {
     switch (choice) {
     case 1: {
       insertMenu(&tree);
-    //   cout << &tree;
+      //   cout << &tree;
       break;
     }
     case 2: {

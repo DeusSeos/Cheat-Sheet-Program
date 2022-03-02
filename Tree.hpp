@@ -199,7 +199,7 @@ public:
 
 
 
-private:
+protected:
     Node *root;
     unsigned int numElements;
 
@@ -208,6 +208,7 @@ private:
 /*
 * menu for the tree class
 */
+
 void treeMenu();
 
 
