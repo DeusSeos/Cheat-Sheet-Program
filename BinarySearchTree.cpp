@@ -18,7 +18,7 @@ void BST<T>::clear() { clear(root); }
 
 // Recursive function for clear
 template <class T>
-void BST<T>::clear(Node *node)
+void BST<T>::clear(Node<T> *node)
 {
   if (node == nullptr)
   {
@@ -33,7 +33,7 @@ void BST<T>::clear(Node *node)
 template <class T>
 bool BST<T>::insert(T element)
 {
-  Node *node = new Node(element);
+  Node<T> *node = new Node(element);
   if (root == nullptr)
   {
     root = node;
@@ -41,7 +41,7 @@ bool BST<T>::insert(T element)
     // cout << "Inserted " << element << " into the tree" << endl
     return true;
   }
-  Node *current = root;
+  Node<T> *current = root;
   while (true)
   {
     if (current->data == element)
@@ -81,7 +81,7 @@ bool BST<T>::remove(T element)
   {
     return false;
   }
-  Node *current = root;
+  Node<T> *current = root;
   while (current != nullptr)
   {
     if (current->data == element)
@@ -117,7 +117,7 @@ bool BST<T>::remove(T element)
   }
   else if (current->left == nullptr || current->right == nullptr)
   {
-    Node *child = current->left == nullptr ? current->right : current->left;
+    Node<T> *child = current->left == nullptr ? current->right : current->left;
     if (current->parent->left == current)
     {
       current->parent->left = child;
@@ -134,7 +134,7 @@ bool BST<T>::remove(T element)
   else
   {
     // 2 children use the successor(node) function
-    Node *succ = successor(current);
+    Node<T> *succ = successor(current);
     // swap the data
     T temp = current->data;
     current->data = succ->data;
@@ -149,7 +149,7 @@ bool BST<T>::remove(T element)
 template <class T>
 T BST<T>::successor(T element)
 {
-  Node *current = root;
+  Node<T> *current = root;
   while (current != nullptr)
   {
     if (current->data == element)
@@ -172,7 +172,7 @@ T BST<T>::successor(T element)
   }
   if (current->right != nullptr)
   {
-    Node *successor = current->right;
+    Node<T> *successor = current->right;
     while (successor->left != nullptr)
     {
       successor = successor->left;
@@ -181,7 +181,7 @@ T BST<T>::successor(T element)
   }
   else
   {
-    Node *successor = current->parent;
+    Node<T> *successor = current->parent;
     while (successor != nullptr && current == successor->right)
     {
       current = successor;
@@ -198,11 +198,11 @@ T BST<T>::successor(T element)
 
 // Returns the node successor of a node
 template <class T>
-typename BST<T>::Node *BST<T>::successor(Node *node)
+Node<T> *BST<T>::successor(Node<T> *node)
 {
   if (node->right != nullptr)
   {
-    Node *successor = node->right;
+    Node<T> *successor = node->right;
     while (successor->left != nullptr)
     {
       successor = successor->left;
@@ -211,7 +211,7 @@ typename BST<T>::Node *BST<T>::successor(Node *node)
   }
   else
   {
-    Node *successor = node->parent;
+    Node<T> *successor = node->parent;
     while (successor != nullptr && node == successor->right)
     {
       node = successor;
@@ -231,7 +231,7 @@ template <class T>
 T BST<T>::max() const
 {
   // iterate through the BST to find the max
-  Node *current = root;
+  Node<T> *current = root;
   while (current->right != nullptr)
   {
     current = current->right;
@@ -245,7 +245,7 @@ template <class T>
 T BST<T>::min() const
 {
   // iterate through all elements in the tree to find the min
-  Node *current = root;
+  Node<T> *current = root;
   while (current->left != nullptr)
   {
     current = current->left;
@@ -256,9 +256,9 @@ T BST<T>::min() const
 
 // finds the element in the Tree
 template <class T>
-typename BST<T>::Node *BST<T>::find(T element)
+Node<T> *BST<T>::find(T element)
 {
-  Node *current = root;
+  Node<T> *current = root;
   while (current != nullptr)
   {
     if (current->data == element)
@@ -287,7 +287,7 @@ unsigned int BST<T>::size() const
 // returns the height from the specified node (the number of edges from the root
 // to the deepest leaf)
 template <class T>
-unsigned int BST<T>::height(Node *node) const
+unsigned int BST<T>::height(Node<T> *node) const
 {
   if (node == nullptr)
   {
@@ -314,7 +314,7 @@ unsigned int BST<T>::height() const
 
 // appends to the vector the nodes in the Tree in inorder
 template <class T>
-void BST<T>::inOrder(Node *node, vector<Node> &list)
+void BST<T>::inOrder(Node<T> *node, vector<Node<T>> &list)
 {
   if (node == nullptr)
   {
@@ -328,7 +328,7 @@ void BST<T>::inOrder(Node *node, vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in preorder
 template <class T>
-void BST<T>::preOrder(Node *node, vector<Node> &list)
+void BST<T>::preOrder(Node<T> *node, vector<Node<T>> &list)
 {
   if (node == nullptr)
   {
@@ -343,7 +343,7 @@ void BST<T>::preOrder(Node *node, vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in postorder
 template <class T>
-void BST<T>::postOrder(Node *node, vector<Node> &list)
+void BST<T>::postOrder(Node<T> *node, vector<Node<T>> &list)
 {
   if (node == nullptr)
   {
@@ -357,17 +357,17 @@ void BST<T>::postOrder(Node *node, vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in levelorder
 template <class T>
-void BST<T>::levelOrder(Node *node, vector<Node> &list)
+void BST<T>::levelOrder(Node<T> *node, vector<Node<T>> &list)
 {
   if (node == nullptr)
   {
     return;
   }
-  queue<Node *> q;
+  queue<Node<T> *> q;
   q.push(node);
   while (!q.empty())
   {
-    Node *current = q.front();
+    Node<T> *current = q.front();
     q.pop();
     list.push_back(*current);
     if (current->left != nullptr)
@@ -384,7 +384,7 @@ void BST<T>::levelOrder(Node *node, vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in inorder from the root
 template <class T>
-void BST<T>::inOrder(vector<Node> &list)
+void BST<T>::inOrder(vector<Node<T>> &list)
 {
   if (root == nullptr)
   {
@@ -398,7 +398,7 @@ void BST<T>::inOrder(vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in preorder from the root
 template <class T>
-void BST<T>::preOrder(vector<Node> &list)
+void BST<T>::preOrder(vector<Node<T>> &list)
 {
   if (root == nullptr)
   {
@@ -413,7 +413,7 @@ void BST<T>::preOrder(vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in postorder from the root
 template <class T>
-void BST<T>::postOrder(vector<Node> &list)
+void BST<T>::postOrder(vector<Node<T>> &list)
 {
   if (root == nullptr)
   {
@@ -427,17 +427,17 @@ void BST<T>::postOrder(vector<Node> &list)
 
 // appends to the vector the nodes in the Tree in levelorder from the root
 template <class T>
-void BST<T>::levelOrder(vector<Node> &list)
+void BST<T>::levelOrder(vector<Node<T>> &list)
 {
   if (root == nullptr)
   {
     return;
   }
-  queue<Node *> q;
+  queue<Node<T> *> q;
   q.push(root);
   while (!q.empty())
   {
-    Node *current = q.front();
+    Node<T> *current = q.front();
     q.pop();
     list.push_back(*current);
     if (current->left != nullptr)
@@ -525,7 +525,7 @@ void BSTmenu()
     cout << "4. Clear" << endl;
     cout << "5. Quit" << endl;
     cout << "6. Print size" << endl;
-    cout << "7. Print height fromroot" << endl;
+    cout << "7. Print height from root" << endl;
     cout << "8. Print Tree In Order" << endl;
     cout << "9. Print Tree Pre Order" << endl;
     cout << "10. Print Tree Post Order" << endl;
@@ -576,7 +576,7 @@ void BSTmenu()
       break;
     case 8:
     {
-      vector<BST<int>::Node> list;
+      vector<Node<int>> list;
       tree.inOrder(list);
       cout << "The tree in order is: ";
       for (size_t i = 0; i < list.size(); i++)
@@ -588,7 +588,7 @@ void BSTmenu()
     }
     case 9:
     {
-      vector<BST<int>::Node> list;
+      vector<Node<int>> list;
       tree.preOrder(list);
       cout << "The tree pre order is: ";
       for (size_t i = 0; i < list.size(); i++)
@@ -600,7 +600,7 @@ void BSTmenu()
     }
     case 10:
     {
-      vector<BST<int>::Node> list;
+      vector<Node<int>> list;
       tree.postOrder(list);
       cout << "The tree post order is: ";
       for (size_t i = 0; i < list.size(); i++)
@@ -612,7 +612,7 @@ void BSTmenu()
     }
     case 11:
     {
-      vector<BST<int>::Node> list;
+      vector<Node<int>> list;
       tree.levelOrder(list);
       cout << "The tree level order is: ";
       for (size_t i = 0; i < list.size(); i++)
@@ -629,12 +629,26 @@ void BSTmenu()
     }
     case 13:
     {
-      cout << "The max value in the tree is: " << tree.max() << endl;
+      if (tree.size() == 0)
+      {
+        cout << "The tree is empty" << endl;
+      }
+      else
+      {
+        cout << "The max element is: " << tree.max() << endl;
+      }
       break;
     }
     case 14:
     {
-      cout << "The min value in the tree is: " << tree.min() << endl;
+      if (tree.size() == 0)
+      {
+        cout << "The tree is empty" << endl;
+      }
+      else
+      {
+        cout << "The min element is: " << tree.min() << endl;
+      }
       break;
     }
     default:

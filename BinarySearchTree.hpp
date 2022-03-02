@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include "Node.hpp"
 
 using namespace std;
 
@@ -11,21 +12,7 @@ template <class T>
 class BST
 {
 public:
-  class Node
-  {
-  public:
-    T data;
-    Node *left;
-    Node *right;
-    Node *parent;
-    Node(T data)
-    {
-      this->data = data;
-      left = nullptr;
-      right = nullptr;
-      parent = nullptr;
-    }
-  };
+  
   /*
    * Constructor
    */
@@ -44,7 +31,7 @@ public:
   /*
    * Recurvisve function for clear
    */
-  void clear(Node *node);
+  void clear(Node<T> *node);
 
   /*
    * Inserts a node into the BST
@@ -83,7 +70,7 @@ public:
    * @postcondition - the successor node of the element is returned
    * @note - this function is only used in the remove function
    */
-  typename BST<T>::Node *successor(Node *node);
+  Node<T> *successor(Node<T> *node);
 
   /*
    * Returns the maximum value in the BST
@@ -112,7 +99,7 @@ public:
    * @postcondition - the data is unchanged
    *
    */
-  BST<T>::Node *find(T element);
+  Node<T> *find(T element);
 
   /*
    * Returns the number of nodes in the Tree
@@ -128,7 +115,7 @@ public:
    * @precondition - the Tree must be non-empty
    * @postcondition - the Tree is unchanged
    */
-  unsigned int height(Node *node) const;
+  unsigned int height(Node<T> *node) const;
 
   /*
    * Returns the height of the node (the number of edges from the root to the
@@ -150,7 +137,7 @@ public:
    * @complexity - O(n)
    * @precondition - the Tree must be non-empty
    */
-  void inOrder(Node *node, vector<Node> &list);
+  void inOrder(Node<T> *node, vector<Node<T>> &list);
 
   /*
    * appends a list of the nodes in the Tree in pre-order traversal to the
@@ -162,7 +149,7 @@ public:
    * @precondition - the Tree must be non-empty
    * @postcondition - the Tree is unchanged
    */
-  void preOrder(Node *node, vector<Node> &list);
+  void preOrder(Node<T> *node, vector<Node<T>> &list);
 
   /*
    * appends a list of the nodes in the Tree in post-order traversal to the
@@ -174,7 +161,7 @@ public:
    * @precondition - the Tree must be non-empty
    * @postcondition - the Tree is unchanged
    */
-  void postOrder(Node *node, vector<Node> &list);
+  void postOrder(Node<T> *node, vector<Node<T>> &list);
 
   /* appends a list of the nodes in the Tree in level-order traversal to the
    * vector
@@ -185,7 +172,7 @@ public:
    * @precondition - the Tree must be non-empty
    * @postcondition - the Tree is unchanged
    */
-  void levelOrder(Node *node, vector<Node> &list);
+  void levelOrder(Node<T> *node, vector<Node<T>> &list);
 
   /*
    * appends a list of the nodes in the Tree in in-order traversal to the vector
@@ -194,7 +181,7 @@ public:
    * @complexity - O(n)
    * @precondition - the Tree must be non-empty
    */
-  void inOrder(vector<Node> &list);
+  void inOrder(vector<Node<T>> &list);
 
   /*
    * appends a list of the nodes in the Tree in pre-order traversal to the
@@ -205,7 +192,7 @@ public:
    * @precondition - the Tree must be non-empty
    * @postcondition - the Tree is unchanged
    */
-  void preOrder(vector<Node> &list);
+  void preOrder(vector<Node<T>> &list);
 
   /*
    * appends a list of the nodes in the Tree in post-order traversal to the
@@ -216,7 +203,7 @@ public:
    * @precondition - the Tree must be non-empty
    * @postcondition - the Tree is unchanged
    */
-  void postOrder(vector<Node> &list);
+  void postOrder(vector<Node<T>> &list);
 
   /* appends a list of the nodes in the Tree in level-order traversal to the
    * vector from the root
@@ -226,10 +213,10 @@ public:
    * @precondition - the Tree must be non-empty
    * @postcondition - the Tree is unchanged
    */
-  void levelOrder(vector<Node> &list);
+  void levelOrder(vector<Node<T>> &list);
 
 private:
-  Node *root;
+  Node<T> *root;
   unsigned int numElements;
 };
 
